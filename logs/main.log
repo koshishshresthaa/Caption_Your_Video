@@ -1,8 +1,0 @@
-2025-06-21 20:04:50 py.warnings  WARNING  <frozen runpy>:128: RuntimeWarning: 'apps.server.api' found in sys.modules after import of package 'apps.server', but prior to execution of 'apps.server.api'; this may result in unpredictable behaviour
-
-2025-06-21 20:05:39 py.warnings  WARNING  /home/koshish/projects/caption_generator/.venv/lib/python3.12/site-packages/whisper/transcribe.py:124: UserWarning: Performing inference on CPU when CUDA is available
-  warnings.warn("Performing inference on CPU when CUDA is available")
-
-2025-06-21 20:05:39 py.warnings  WARNING  /home/koshish/projects/caption_generator/.venv/lib/python3.12/site-packages/whisper/transcribe.py:126: UserWarning: FP16 is not supported on CPU; using FP32 instead
-  warnings.warn("FP16 is not supported on CPU; using FP32 instead")
-
