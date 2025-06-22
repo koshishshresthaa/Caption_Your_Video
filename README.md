@@ -42,6 +42,6 @@ uv sync
 Use uv run to start both the frontend and backend:
 
 ```bash
-uv run apps.frontend.UI
-uv run apps.server.api
+uv run -m streamlit run apps/frontend/UI.py
+uv run -m apps.server.api
 ```
