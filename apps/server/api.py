@@ -3,11 +3,10 @@ from fastapi.responses import FileResponse
 import uvicorn
 from tempfile import NamedTemporaryFile 
 from pydantic import BaseModel
-from caption_generator import transcribe_video,create_final_video
-from logger import setup_logging
+from logconfig import setup_logging
 from logging import getLogger
 import os
-from moviepy.editor import TextClip, CompositeVideoClip, concatenate_videoclips,VideoFileClip, ColorClip
+from caption_generator.core import VideoTranscriber
 
 from typing import List
 setup_logging()
@@ -16,6 +15,8 @@ logger=getLogger('server')
 
 
 app = FastAPI()
+
+vt = VideoTranscriber()
 
 
 # In-memory store for single processing
@@ -62,7 +63,7 @@ def create_upload_file(file: UploadFile):
 
         # Process the video file
         logger.info(f"Processing video file: {temp_file_path}")
-        generated_caption=transcribe_video(temp_file_path)
+        generated_caption=vt.video_to_text(temp_file_path)
 
     logger.info(f"Generated caption: {generated_caption}")
     #create unique id to store the caption
@@ -132,7 +133,7 @@ def create_video_with_caption():
 
     logger.info(f"Creating video with caption in highligheted format...")
         
-    output_path = create_final_video(caption,_VIDEOFILEPATH)
+    output_path = vt.create_final_video(caption,_VIDEOFILEPATH)
 
     os.remove(_VIDEOFILEPATH)
     # Remove the temporary video file
